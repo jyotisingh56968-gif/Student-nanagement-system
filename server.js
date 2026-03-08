@@ -7,24 +7,23 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// student data
+// students data
 let students = [
   { id: 101, name: "Rahul Sharma", course: "BSc CS" },
   { id: 102, name: "Priya Singh", course: "BCA" }
 ];
 
-// API routes
-app.get("/test", (req, res) => {
-  res.send("Test route working ✅");
-});
-
+// API route
 app.get("/students", (req, res) => {
   res.json(students);
 });
 
+// serve frontend
+app.use(express.static(__dirname));
+
 // homepage
 app.get("/", (req, res) => {
-  res.send("Student Management System API is running 🚀");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 const PORT = process.env.PORT || 5000;
