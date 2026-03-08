@@ -7,21 +7,34 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// students data
+// memory database
 let students = [
-  { id: 101, name: "Rahul Sharma", course: "BSc CS" },
-  { id: 102, name: "Priya Singh", course: "BCA" }
+  { id: 101, name: "Rahul Sharma", course: "BSc CS", year: "1", email: "rahul@test.com" },
+  { id: 102, name: "Priya Singh", course: "BCA", year: "2", email: "priya@test.com" }
 ];
 
-// API route
+// GET students
 app.get("/api/students", (req, res) => {
   res.json(students);
 });
 
-// serve frontend files
+// ADD student
+app.post("/api/students", (req, res) => {
+
+  const student = req.body;
+
+  students.push(student);
+
+  res.json({
+    message: "Student added successfully",
+    data: student
+  });
+
+});
+
+// serve frontend
 app.use(express.static(path.join(__dirname)));
 
-// home route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
