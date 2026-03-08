@@ -179,7 +179,7 @@ let course = document.getElementById("studentCourse").value
 let year = document.getElementById("studentYear").value
 let email = document.getElementById("studentEmail").value
 
-fetch("/api/students")
+fetch("/api/students",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -197,9 +197,10 @@ email:email
 
 alert("Student saved successfully")
 
-loadStudents()   
+loadStudents()
 
 })
+
 
 }
 
@@ -239,7 +240,7 @@ if(newEmail) email.innerText = newEmail;
 
 function loadStudents(){
 
-fetch("/api/students")
+fetch("/api/students",{
 .then(res => res.json())
 .then(data => {
 
