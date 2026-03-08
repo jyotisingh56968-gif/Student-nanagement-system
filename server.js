@@ -5,8 +5,6 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
-
 
 let students = [
   { id: 101, name: "Rahul Sharma", course: "BSc CS" },
@@ -18,11 +16,12 @@ app.get("/", (req, res) => {
   res.send("Student Management System API is running 🚀");
 });
 
-// Students API
+// Test route
 app.get("/test", (req, res) => {
   res.send("Test route working ✅");
 });
 
+// Students API
 app.get("/students", (req, res) => {
   res.json(students);
 });
