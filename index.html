@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Management System</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="sidebar">
+
+<div class="sidebar-logo">
+<img src="image/student.png">
+<h2>Future Minds</h2>
+</div>
+
+<ul>
+<li onclick="showSection('dashboard')">Dashboard</li>
+<li onclick="showSection('notice')">Notice Board</li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+<div class="search-box">
+<input type="text" placeholder="Search...">
+</div>
+
+<div class="top-actions">
+
+<div class="admin-profile">
+<img src="image/teacher.png">
+</div>
+
+<button onclick="showSection('login')" class="login-btn">Admin Login</button>
+
+</div>
+
+</div>
+
+<!-- Dashboard -->
+
+
+<div class="dashboard-content">
+
+
+
+<div id="dashboard" class="section">
+
+<div class="hero">
+
+<img src="image/college.jpg" class="hero-img">
+
+<div class="hero-text">
+<h1>Future Minds University</h1>
+<p>Empowering Students for a Brighter Future</p>
+<button class="hero-btn" onclick="showSection('courses')">
+Explore Programs
+</button>
+</div>
+
+</div>
+
+</div>
+
+<div id="courses" class="section">
+
+<h2>Available Courses</h2>
+
+<div class="courses">
+
+<div class="course-card">
+<h3>BSc Computer Science</h3>
+<p>Duration: 3 Years</p>
+<p>Subjects: Programming, Data Structures, AI</p>
+</div>
+
+<div class="course-card">
+<h3>BCA</h3>
+<p>Duration: 3 Years</p>
+<p>Subjects: Web Development, DBMS, Networking</p>
+</div>
+
+<div class="course-card">
+<h3>BTech Information Technology</h3>
+<p>Duration: 4 Years</p>
+<p>Subjects: Software Engineering, Cloud Computing</p>
+</div>
+
+<div class="course-card">
+<h3>MSc Data Science</h3>
+<p>Duration: 2 Years</p>
+<p>Subjects: Machine Learning, Big Data</p>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<div class="stat-card">
+<h3 class="counter" data-target="1200">0</h3>
+<p>Students</p>
+</div>
+
+<div class="stat-card">
+<h3 class="counter" data-target="45">0</h3>
+<p>Courses</p>
+</div>
+
+<div class="stat-card">
+<h3 class="counter" data-target="80">0</h3>
+<p>Faculty</p>
+</div>
+</div>
+
+
+<div class="announcements">
+
+<h2>Latest Announcements</h2>
+
+<ul>
+<li>📢 Admission Open for 2026 Batch</li>
+<li>📅 Annual Tech Fest on March 25</li>
+<li>🎓 Semester Exams starting April 10</li>
+
+</ul>
+
+</div>
+
+
+<!-- Student Management -->
+
+
+<!-- Teacher -->
+
+<div id="teachers" class="section">
+
+<h2>Add Teacher</h2>
+
+<input id="tid" placeholder="Teacher ID">
+<input id="tname" placeholder="Teacher Name">
+
+<button onclick="addTeacher()">Add Teacher</button>
+
+<ul id="teacherList"></ul>
+
+</div>
+
+<!-- Attendance -->
+
+<div id="attendance" class="section">
+
+<h2>Attendance</h2>
+
+<input placeholder="Student ID">
+
+<select>
+<option>Present</option>
+<option>Absent</option>
+</select>
+
+<button>Mark Attendance</button>
+
+</div>
+
+<!-- Marks -->
+
+<div id="marks" class="section">
+
+<h2>Marksheet</h2>
+
+<input placeholder="Student ID">
+<input placeholder="Math Marks">
+<input placeholder="Science Marks">
+<input placeholder="Computer Marks">
+
+<button>Generate Result</button>
+
+</div>
+
+<!-- Fees -->
+
+<div id="fees" class="section">
+
+<h2>Fee Management</h2>
+
+<input placeholder="Student ID">
+<input placeholder="Amount Paid">
+
+<button>Submit</button>
+
+</div>
+
+<!-- Notice -->
+
+<div id="notice" class="section">
+
+<h2>Notice Board</h2>
+
+
+<div class="notice">
+
+<h3>📢 Admission Open for 2026 Batch</h3>
+<p>
+Future Minds University is pleased to announce that admissions for the 
+2026 academic session are now open for BSc Computer Science, BCA, 
+BTech IT and MSc Data Science programs.
+</p>
+<p><strong>Date:</strong> 10 March 2026</p>
+
+</div>
+
+<div class="notice">
+
+<h3>🎉 Annual Tech Fest 2026</h3>
+<p>
+The Annual Tech Fest will be held on 25 March 2026 at the university campus.
+Students can participate in coding competitions, hackathons, robotics
+and AI innovation challenges.
+</p>
+<p><strong>Date:</strong> 25 March 2026</p>
+
+</div>
+
+
+<textarea id="noticeText"></textarea>
+
+<br><br>
+
+<button onclick="addNotice()">Post Notice</button>
+
+<ul id="noticeList"></ul>
+
+</div>
+
+<!-- Login -->
+<div id="login" class="section">
+
+<h2>Admin Login</h2>
+
+<input type="text" id="adminId" placeholder="Admin ID"><br><br>
+
+<input type="password" id="adminPass" placeholder="Password"><br><br>
+
+<button onclick="loginAdmin()">Login</button>
+
+
+<div id="adminPanel" style="display:none; margin-top:20px;">
+
+<div class="cards">
+
+<div class="card">
+<img src="image/student.png" class="card-img">
+<h3>Total Students</h3>
+<p id="studentCount">0</p>
+</div>
+
+<div class="card">
+<img src="image/teacher.png" class="card-img">
+<h3>Total Students</h3>
+<p id="totalStudents">20</p>
+</div>
+
+</div>
+
+<br>
+
+<!-- ADD STUDENT SECTION -->
+
+<h2>Add Student</h2>
+
+<h2>Student Records</h2>
+
+<input type="text" id="searchInput" placeholder="Search by Roll No..." onkeyup="searchStudent()">
+
+<table border="1" width="100%">
+
+<tr>
+<th>Roll No</th>
+<th>Name</th>
+<th>Course</th>
+<th>Year</th>
+<th>Email</th>
+<th>Edit</th>
+</tr>
+
+<tr><td>101</td><td>Rahul Sharma</td><td>BSc Computer Science</td><td>1st Year</td><td>rahul@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>102</td><td>Priya Singh</td><td>BCA</td><td>2nd Year</td><td>priya@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>103</td><td>Aman Verma</td><td>BTech IT</td><td>3rd Year</td><td>aman@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>104</td><td>Neha Gupta</td><td>MSc Data Science</td><td>1st Year</td><td>neha@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>105</td><td>Arjun Mehta</td><td>BSc Computer Science</td><td>2nd Year</td><td>arjun@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>106</td><td>Sneha Kapoor</td><td>BCA</td><td>1st Year</td><td>sneha@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>107</td><td>Karan Malhotra</td><td>BTech IT</td><td>4th Year</td><td>karan@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>108</td><td>Pooja Yadav</td><td>BSc Computer Science</td><td>3rd Year</td><td>pooja@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>109</td><td>Rohit Chauhan</td><td>BCA</td><td>2nd Year</td><td>rohit@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>110</td><td>Simran Kaur</td><td>MSc Data Science</td><td>1st Year</td><td>simran@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>111</td><td>Aditya Mishra</td><td>BTech IT</td><td>3rd Year</td><td>aditya@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>112</td><td>Kavya Sharma</td><td>BSc Computer Science</td><td>1st Year</td><td>kavya@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>113</td><td>Yash Patel</td><td>BCA</td><td>3rd Year</td><td>yash@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>114</td><td>Ananya Joshi</td><td>BTech IT</td><td>2nd Year</td><td>ananya@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>115</td><td>Riya Das</td><td>BSc Computer Science</td><td>2nd Year</td><td>riya@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>116</td><td>Vikas Singh</td><td>BCA</td><td>1st Year</td><td>vikas@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>117</td><td>Tanya Arora</td><td>MSc Data Science</td><td>2nd Year</td><td>tanya@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>118</td><td>Mohit Agarwal</td><td>BTech IT</td><td>4th Year</td><td>mohit@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>119</td><td>Sakshi Jain</td><td>BSc Computer Science</td><td>3rd Year</td><td>sakshi@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+
+<tr><td>120</td><td>Harsh Vardhan</td><td>BCA</td><td>2nd Year</td><td>harsh@fmu.edu</td><td><button onclick="editStudent(this)">Edit</button></td></tr>
+</table>
+
+
+
+<h2>Student Marksheets</h2>
+
+<table border="1" width="100%">
+
+<tr>
+<th>Roll No</th>
+<th>Name</th>
+<th>Math</th>
+<th>Programming</th>
+<th>Database</th>
+<th>Total</th>
+</tr>
+
+<tr><td>101</td><td>Rahul Sharma</td><td>85</td><td>90</td><td>88</td><td>263</td></tr>
+<tr><td>102</td><td>Priya Singh</td><td>80</td><td>86</td><td>89</td><td>255</td></tr>
+<tr><td>103</td><td>Aman Verma</td><td>87</td><td>91</td><td>90</td><td>268</td></tr>
+<tr><td>104</td><td>Neha Gupta</td><td>84</td><td>88</td><td>87</td><td>259</td></tr>
+<tr><td>105</td><td>Arjun Mehta</td><td>82</td><td>85</td><td>83</td><td>250</td></tr>
+<tr><td>106</td><td>Sneha Kapoor</td><td>81</td><td>84</td><td>85</td><td>250</td></tr>
+<tr><td>107</td><td>Karan Malhotra</td><td>89</td><td>92</td><td>91</td><td>272</td></tr>
+<tr><td>108</td><td>Pooja Yadav</td><td>86</td><td>87</td><td>89</td><td>262</td></tr>
+<tr><td>109</td><td>Rohit Chauhan</td><td>78</td><td>82</td><td>80</td><td>240</td></tr>
+<tr><td>110</td><td>Simran Kaur</td><td>83</td><td>85</td><td>84</td><td>252</td></tr>
+<tr><td>111</td><td>Aditya Mishra</td><td>86</td><td>89</td><td>88</td><td>263</td></tr>
+<tr><td>112</td><td>Kavya Sharma</td><td>84</td><td>87</td><td>85</td><td>256</td></tr>
+<tr><td>113</td><td>Yash Patel</td><td>82</td><td>86</td><td>84</td><td>252</td></tr>
+<tr><td>114</td><td>Ananya Joshi</td><td>88</td><td>91</td><td>90</td><td>269</td></tr>
+<tr><td>115</td><td>Riya Das</td><td>80</td><td>83</td><td>82</td><td>245</td></tr>
+<tr><td>116</td><td>Vikas Singh</td><td>79</td><td>82</td><td>81</td><td>242</td></tr>
+<tr><td>117</td><td>Tanya Arora</td><td>87</td><td>90</td><td>89</td><td>266</td></tr>
+<tr><td>118</td><td>Mohit Agarwal</td><td>85</td><td>88</td><td>87</td><td>260</td></tr>
+<tr><td>119</td><td>Sakshi Jain</td><td>83</td><td>85</td><td>84</td><td>252</td></tr>
+<tr><td>120</td><td>Harsh Vardhan</td><td>81</td><td>84</td><td>83</td><td>248</td></tr>
+
+</table>
+
+<h2>Student Attendance</h2>
+
+<table border="1" width="100%">
+
+<tr>
+<th>Roll No</th>
+<th>Name</th>
+<th>Attendance %</th>
+</tr>
+
+<tr><td>101</td><td>Rahul Sharma</td><td>92%</td></tr>
+<tr><td>102</td><td>Priya Singh</td><td>88%</td></tr>
+<tr><td>103</td><td>Aman Verma</td><td>95%</td></tr>
+<tr><td>104</td><td>Neha Gupta</td><td>91%</td></tr>
+<tr><td>105</td><td>Arjun Mehta</td><td>89%</td></tr>
+<tr><td>106</td><td>Sneha Kapoor</td><td>90%</td></tr>
+<tr><td>107</td><td>Karan Malhotra</td><td>87%</td></tr>
+<tr><td>108</td><td>Pooja Yadav</td><td>94%</td></tr>
+<tr><td>109</td><td>Rohit Chauhan</td><td>86%</td></tr>
+<tr><td>110</td><td>Simran Kaur</td><td>92%</td></tr>
+<tr><td>111</td><td>Aditya Mishra</td><td>93%</td></tr>
+<tr><td>112</td><td>Kavya Sharma</td><td>89%</td></tr>
+<tr><td>113</td><td>Yash Patel</td><td>90%</td></tr>
+<tr><td>114</td><td>Ananya Joshi</td><td>88%</td></tr>
+<tr><td>115</td><td>Riya Das</td><td>91%</td></tr>
+<tr><td>116</td><td>Vikas Singh</td><td>87%</td></tr>
+<tr><td>117</td><td>Tanya Arora</td><td>93%</td></tr>
+<tr><td>118</td><td>Mohit Agarwal</td><td>90%</td></tr>
+<tr><td>119</td><td>Sakshi Jain</td><td>94%</td></tr>
+<tr><td>120</td><td>Harsh Vardhan</td><td>88%</td></tr>
+
+</table>
+
+
+<h2>Student Fee Records</h2>
+
+<table border="1" width="100%">
+
+<tr>
+<th>Roll No</th>
+<th>Name</th>
+<th>Total Fee</th>
+<th>Paid</th>
+<th>Status</th>
+</tr>
+
+<tr><td>101</td><td>Rahul Sharma</td><td>₹80,000</td><td>₹80,000</td><td>Paid</td></tr>
+<tr><td>102</td><td>Priya Singh</td><td>₹75,000</td><td>₹50,000</td><td>Pending</td></tr>
+<tr><td>103</td><td>Aman Verma</td><td>₹90,000</td><td>₹90,000</td><td>Paid</td></tr>
+<tr><td>104</td><td>Neha Gupta</td><td>₹85,000</td><td>₹60,000</td><td>Pending</td></tr>
+<tr><td>105</td><td>Arjun Mehta</td><td>₹80,000</td><td>₹80,000</td><td>Paid</td></tr>
+<tr><td>106</td><td>Sneha Kapoor</td><td>₹75,000</td><td>₹75,000</td><td>Paid</td></tr>
+<tr><td>107</td><td>Karan Malhotra</td><td>₹90,000</td><td>₹70,000</td><td>Pending</td></tr>
+<tr><td>108</td><td>Pooja Yadav</td><td>₹80,000</td><td>₹80,000</td><td>Paid</td></tr>
+<tr><td>109</td><td>Rohit Chauhan</td><td>₹75,000</td><td>₹60,000</td><td>Pending</td></tr>
+<tr><td>110</td><td>Simran Kaur</td><td>₹85,000</td><td>₹85,000</td><td>Paid</td></tr>
+<tr><td>111</td><td>Aditya Mishra</td><td>₹90,000</td><td>₹90,000</td><td>Paid</td></tr>
+<tr><td>112</td><td>Kavya Sharma</td><td>₹80,000</td><td>₹60,000</td><td>Pending</td></tr>
+<tr><td>113</td><td>Yash Patel</td><td>₹75,000</td><td>₹75,000</td><td>Paid</td></tr>
+<tr><td>114</td><td>Ananya Joshi</td><td>₹90,000</td><td>₹70,000</td><td>Pending</td></tr>
+<tr><td>115</td><td>Riya Das</td><td>₹80,000</td><td>₹80,000</td><td>Paid</td></tr>
+<tr><td>116</td><td>Vikas Singh</td><td>₹75,000</td><td>₹50,000</td><td>Pending</td></tr>
+<tr><td>117</td><td>Tanya Arora</td><td>₹85,000</td><td>₹85,000</td><td>Paid</td></tr>
+<tr><td>118</td><td>Mohit Agarwal</td><td>₹90,000</td><td>₹90,000</td><td>Paid</td></tr>
+<tr><td>119</td><td>Sakshi Jain</td><td>₹80,000</td><td>₹80,000</td><td>Paid</td></tr>
+<tr><td>120</td><td>Harsh Vardhan</td><td>₹75,000</td><td>₹60,000</td><td>Pending</td></tr>
+
+</table>
+
+
+<input type="text" id="studentId" placeholder="Student ID">
+<input type="text" id="studentName" placeholder="Student Name">
+<input type="text" id="studentCourse" placeholder="Course">
+<input type="text" id="studentYear" placeholder="Year">
+<input type="text" id="studentEmail" placeholder="Email">
+
+<button onclick="addStudent()">Add Student</button>
+
+<h3>Student List</h3>
+
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Course</th>
+<th>Year</th>
+<th>Email</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="studentTable"></tbody>
+
+</table>
+
+<br>
+
+<button onclick="showSection('attendance')">Attendance</button>
+
+<button onclick="showSection('marks')">Marksheet</button>
+
+<button onclick="showSection('fees')">Fees</button>
+
+</div>
+
+</div>
+<script src="javascript/script.js"></script>
+
+</body>
+</html>
