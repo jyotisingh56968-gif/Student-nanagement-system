@@ -7,27 +7,22 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Students data
+// students data
 let students = [
   { id: 101, name: "Rahul Sharma", course: "BSc CS" },
   { id: 102, name: "Priya Singh", course: "BCA" }
 ];
 
 // API route
-app.get("/students", (req, res) => {
+app.get("/api/students", (req, res) => {
   res.json(students);
 });
 
-// Serve static files
+// serve frontend files
 app.use(express.static(path.join(__dirname)));
 
-// Home page
+// home route
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
-
-// Catch all route
-app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
