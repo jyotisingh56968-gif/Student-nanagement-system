@@ -17,9 +17,9 @@ app.get("/", (req, res) => {
 });
 
 // Students API
-app.get("/students", (req, res) => {
-  res.json(students);
-});
+app.get("/api/students",(req,res)=>{
+  res.json(students)
+})
 
 // Add student
 app.post("/students", (req, res) => {
