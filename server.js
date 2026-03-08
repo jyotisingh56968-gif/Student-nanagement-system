@@ -26,3 +26,12 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log("Server running on port " + PORT);
 });
+
+app.get("/students", (req, res) => {
+  res.json([
+    { id: 101, name: "Rahul Sharma", course: "BSc CS" },
+    { id: 102, name: "Priya Singh", course: "BCA" },
+    { id: 103, name: "Aman Verma", course: "BTech IT" },
+    { id: 104, name: "Neha Gupta", course: "MSc Data Science" }
+  ]);
+});
