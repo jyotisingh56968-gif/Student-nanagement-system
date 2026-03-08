@@ -19,15 +19,12 @@ app.get("/", (req, res) => {
 });
 
 // Students API
-app.get("/api/students",(req,res)=>{
-  res.json(students)
-})
+app.get("/test", (req, res) => {
+  res.send("Test route working ✅");
+});
 
-// Add student
-app.post("/students", (req, res) => {
-  const student = req.body;
-  students.push(student);
-  res.json({ message: "Student added successfully" });
+app.get("/students", (req, res) => {
+  res.json(students);
 });
 
 const PORT = process.env.PORT || 5000;
