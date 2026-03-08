@@ -18,8 +18,8 @@ app.get("/students", (req, res) => {
   res.json(students);
 });
 
-// serve frontend
-app.use(express.static(__dirname));
+// serve frontend files
+app.use(express.static(path.join(__dirname)));
 
 // homepage
 app.get("/", (req, res) => {
