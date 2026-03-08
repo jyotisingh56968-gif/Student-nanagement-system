@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
 });
 
 
-app.get("/students",(req,res)=>{
-res.json(students)
+app.get("/api/students",(req,res)=>{
+  res.json(students)
 })
 
 app.post("/students",(req,res)=>{
