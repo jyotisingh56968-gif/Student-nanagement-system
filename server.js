@@ -18,10 +18,10 @@ app.get("/students", (req, res) => {
   res.json(students);
 });
 
-// serve static files
+// serve frontend files
 app.use(express.static(__dirname));
 
-// default homepage
+// homepage
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
